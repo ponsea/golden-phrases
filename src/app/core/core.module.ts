@@ -1,20 +1,24 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppInfoService } from './app-info.service';
 
 @NgModule({
   imports: [
-    CommonModule,
-    HttpClientModule
+    SharedModule,
+    HttpClientModule,
   ],
-  declarations: [ NavbarComponent ],
+  declarations: [
+    NavbarComponent
+  ],
   providers: [
     AppInfoService
   ],
-  exports: [ NavbarComponent ]
+  exports: [
+    NavbarComponent
+  ]
 })
 export class CoreModule {
   constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
