@@ -1,5 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -9,6 +10,7 @@ import { AppInfoService } from './app-info.service';
   imports: [
     SharedModule,
     HttpClientModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     NavbarComponent
