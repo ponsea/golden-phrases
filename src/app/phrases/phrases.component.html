@@ -1,3 +1,10 @@
-<p class="container">
-  phrases works!
-</p>
+<article class="container">
+  <h1 class="my-4">金のフレーズ</h1>
+  <ngb-tabset>
+    <ngb-tab *ngFor="let title of titles;let i=index" [title]="title">
+      <ng-template ngbTabContent>
+        <gp-section-list [level]="i+1"></gp-section-list>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</article>
