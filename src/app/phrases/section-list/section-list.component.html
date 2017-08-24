@@ -1,0 +1,7 @@
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel *ngFor="let i of sectionRange" [title]="'セクション' + i">
+    <ng-template ngbPanelContent>
+      <gp-section [section]="i"></gp-section>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
