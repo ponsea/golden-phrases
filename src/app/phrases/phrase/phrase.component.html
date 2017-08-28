@@ -1,0 +1,19 @@
+<dl class="text-center">
+  <dt class="text-info">&lt;フレーズ&gt;</dt>
+  <dd [innerHTML]="phraseJa"></dd>
+  <dd [innerHTML]="phraseEn"></dd>
+  <dt class="text-info">&lt;単語&gt;</dt>
+  <dd>{{answer}}</dd>
+  <dt class="text-info">&lt;意味&gt;</dt>
+  <dd>
+    <ul class="list-inline">
+      <li class="list-inline-item" *ngFor="let meaning of meanings" [innerHTML]="meaning"></li>
+    </ul>
+  </dd>
+  <dt class="text-info">&lt;説明&gt;</dt>
+  <dd>
+    <ul class="list-unstyled">
+      <li *ngFor="let exp of explanations" [innerHTML]="exp"></li>
+    </ul>
+  </dd>
+</dl>
