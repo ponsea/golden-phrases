@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { PhrasesService } from '../phrases.service';
-import { Phrase } from '../phrase';
+import { PhrasesService } from '../../core/phrases.service';
+import { Phrase } from '../../core/phrase';
 
 @Component({
   selector: 'gp-section-list',

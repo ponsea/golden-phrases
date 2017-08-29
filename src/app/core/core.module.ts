@@ -5,6 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppInfoService } from './app-info.service';
+import { PhrasesService } from './phrases.service';
+import { PhraseConversionService } from './phrase-conversion.service';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { AppInfoService } from './app-info.service';
     NavbarComponent
   ],
   providers: [
-    AppInfoService
+    AppInfoService,
+    PhrasesService,
+    PhraseConversionService
   ],
   exports: [
     NavbarComponent

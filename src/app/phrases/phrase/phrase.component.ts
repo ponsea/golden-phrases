@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 
-import { Phrase } from '../phrase';
-import { PhraseConversionService } from '../phrase-conversion.service';
+import { Phrase } from '../../core/phrase';
+import { PhraseConversionService } from '../../core/phrase-conversion.service';
 
 @Component({
   selector: 'gp-phrase',
