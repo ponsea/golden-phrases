@@ -13,9 +13,9 @@ export class PhraseConversionService {
     let anotherAnswer = answer.match(/\((\w+)\)/)
     let result: string;
     if (anotherAnswer) {
-      result = phraseEn.replace(/\w\*\w*/, `{${RegExp.$1}}`);
+      result = phraseEn.replace(/[a-z-]\*[a-z-]*/i, `{${RegExp.$1}}`);
     } else {
-      result = phraseEn.replace(/\w\*/i, `{${answer.split(' ')[0]}}`);
+      result = phraseEn.replace(/[a-z-]\*([a-z-]*)/i, `{${answer.split(' ')[0]}$1}`);
     }
     return this.drawUnderline(this.highlight(result));
   }
