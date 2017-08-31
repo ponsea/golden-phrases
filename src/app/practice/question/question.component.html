@@ -1,0 +1,31 @@
+<dl class="text-center">
+  <dt class="text-info">&lt;フレーズ&gt;</dt>
+  <dd [innerHTML]="phraseJa"></dd>
+  <dd [innerHTML]="phraseEn"></dd>
+  <dt class="text-info">&lt;意味&gt;</dt>
+  <dd>
+    <ul class="list-inline">
+      <li class="list-inline-item"
+          *ngFor="let meaning of meanings"
+          [innerHTML]="meaning"></li>
+    </ul>
+  </dd>
+  <input placeholder="解答を記入してEnter"
+         type="text"
+         [(ngModel)]="answer"
+         #ansInput (keyup.enter)="onAnswer(ansInput.value)"
+         [disabled]="isAnswered">
+  <div *ngIf="isAnswered">
+    <div [class.text-primary]="isCorrect"
+         [class.text-danger]="!isCorrect">
+      {{reply}}
+    </div>
+    <dt class="text-info">&lt;説明&gt;</dt>
+    <dd>
+      <ul class="list-unstyled">
+        <li *ngFor="let exp of explanations" [innerHTML]="exp"></li>
+      </ul>
+    </dd>
+    <button type="button" (click)="next()" class="btn btn-success" myFocusOnInit>次の問題へ(Enter)</button>
+  </div>
+</dl>
