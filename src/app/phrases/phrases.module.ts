@@ -5,7 +5,6 @@ import { PhrasesRoutingModule } from './phrases-routing.module';
 import { PhrasesComponent } from './phrases.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import { SectionComponent } from './section/section.component';
-import { PhraseComponent } from './phrase/phrase.component';
 
 @NgModule({
   imports: [
@@ -16,7 +15,6 @@ import { PhraseComponent } from './phrase/phrase.component';
     PhrasesComponent,
     SectionListComponent,
     SectionComponent,
-    PhraseComponent
   ],
   providers: [
   ]
