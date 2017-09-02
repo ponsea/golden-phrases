@@ -1,0 +1,8 @@
+<div class="clearfix text-center">
+  <button type="button" class="btn btn-info float-left" (click)="prev()">前へ</button>
+  <button type="button" class="btn btn-info float-right" (click)="next()">次へ</button>
+  {{index + 1}} / {{phrases.length}}
+</div>
+<article *ngIf="currentPhrase">
+  <gp-phrase [phrase]="currentPhrase"></gp-phrase>
+</article>

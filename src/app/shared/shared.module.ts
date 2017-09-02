@@ -5,6 +5,7 @@ import { NgbModule }                from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule }             from '@angular/router';
 
 import { PhraseComponent } from './phrase/phrase.component';
+import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.component';
 
 @NgModule({
   imports: [
@@ -15,13 +16,15 @@ import { PhraseComponent } from './phrase/phrase.component';
    ],
   declarations: [
     PhraseComponent,
+    PhrasesViewerComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
     NgbModule,
     RouterModule,
-    PhraseComponent
+    PhraseComponent,
+    PhrasesViewerComponent,
   ]
 })
 export class SharedModule { }
