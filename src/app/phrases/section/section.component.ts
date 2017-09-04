@@ -9,13 +9,13 @@ import { PhrasesService } from '../../core/phrases.service';
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent implements OnInit {
-  @Input() section: number;
+  @Input() sectionId: number;
   phrases: Phrase[] = [];
 
   constructor(private phrasesService: PhrasesService) { }
 
   ngOnInit() {
-    this.phrasesService.getSection(this.section)
+    this.phrasesService.getSection(this.sectionId)
       .subscribe(phrases => this.phrases = phrases,
                  err => alert(err.message));
   }

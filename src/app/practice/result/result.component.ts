@@ -19,7 +19,7 @@ export class ResultComponent implements OnInit {
   @ViewChild('phrasesModal') phrasesModal: TemplateRef<any>;
   @Input() phrases: Phrase[];
   @Input() scores: [number, boolean][];
-  section: number;
+  sectionId: number;
   soundUrl: string;
   isModalOpend = false;
   phraseIdx = 0;
@@ -35,8 +35,8 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.phrases.sort((a, b) => a.number - b.number);
     this.scores.sort((a, b) => a[0] - b[0]);
-    this.section = this.phrases[0].section;
-    let num = ('0' + this.section).slice(-2); // zero padding
+    this.sectionId = this.phrases[0].sectionId;
+    let num = ('0' + this.sectionId).slice(-2); // zero padding
     this.soundUrl = `assets/sounds/sections/section${num}.mp3`;
     // TODO: saving scores
   }

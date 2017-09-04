@@ -13,7 +13,7 @@ import { Phrase } from '../core/phrase';
   styleUrls: ['./practice.component.scss']
 })
 export class PracticeComponent implements OnInit {
-  section: number;
+  sectionId: number;
   phrases: Phrase[];
   scores: [number, boolean][];
   phraseIdx: number;
@@ -30,11 +30,11 @@ export class PracticeComponent implements OnInit {
       .do((params) => {
         this.phraseIdx = 0;
         this.scores = [];
-        this.section = +params.get('id');
+        this.sectionId = +params.get('id');
         this.isEnd = false;
       })
       .switchMap(
-        params => this.phrasesService.getSection(this.section)
+        params => this.phrasesService.getSection(this.sectionId)
       )
       .subscribe(
         phrases => this.phrases = this.phrasesService.shuffle(phrases),

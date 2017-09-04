@@ -24,9 +24,9 @@ export class PhrasesService {
     return this.sectionRanges[level - 1];
   }
 
-  getSection(section: number): Observable<Phrase[]> {
+  getSection(sectionId: number): Observable<Phrase[]> {
     let url = this.appInfo.apiUrl + "/phrases";
-    let params = new HttpParams().set("section", section.toString());
+    let params = new HttpParams().set("section_id", sectionId.toString());
     return this.httpClient.get<PhrasesResponse>(url, {params})
       .map((res) => res.data as Phrase[]);
   }

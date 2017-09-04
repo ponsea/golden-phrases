@@ -1,7 +1,7 @@
 <section class="container" *ngIf="phrases">
   <article *ngIf="!isEnd" class="text-center">
     <h1 class="h4 mt-3">テスト</h1>
-    <h2 class="h5">- セクション{{section}} -</h2>
+    <h2 class="h5">- セクション{{sectionId}} -</h2>
     <div>{{phraseIdx + 1}} / {{phrases.length}}</div>
     <gp-question [phrase]="currentPhrase"
                  (answered)="next($event)"></gp-question>

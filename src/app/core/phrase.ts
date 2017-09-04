@@ -1,7 +1,7 @@
 export class Phrase {
   id: number;
   number: number;
-  section: number;
+  sectionId: number;
   phraseJa: string;
   phraseEn: string;
   answer: string;
