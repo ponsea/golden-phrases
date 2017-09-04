@@ -1,0 +1,44 @@
+<div class="text-center">
+  <h1 class="h4 mt-3">テスト結果</h1>
+  <h2 class="h5 mb-3">- セクション{{section}} -</h2>
+</div>
+<button type="button" class="mb-3 btn btn-outline-primary" (click)="openModal(0)">フレーズ詳細</button>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>単語</th>
+      <th class="hidden-xs-down">意味</th>
+      <th>正否</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of range(phrases.length)" (click)="openModal(i)">
+      <td [class.incorrect]="!scoreAt(i)">{{phrases[i].answer}}</td>
+      <td class="hidden-xs-down" [innerHTML]="convert(phrases[i].meanings)"></td>
+      <td [class.text-primary]="scoreAt(i)" [class.text-danger]="!scoreAt(i)">
+        {{scoreAt(i) ? "○" : "✕"}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-warning btn-block btn-lg" routerLink="/phrases">
+  終了する
+</a>
+
+<ng-template #phrasesModal let-dismiss="dismiss">
+  <section class="modal-header">
+    <h4 class="modal-title" [class.text-primary]="scoreAt(phraseIdx)" [class.text-danger]="!scoreAt(phraseIdx)">
+      {{scoreAt(phraseIdx) ? "正解" : "不正解"}}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </section>
+  <section class="modal-body">
+    <gp-phrases-viewer [phrases]="phrases" [(index)]="phraseIdx"></gp-phrases-viewer>
+  </section>
+  <section class="modal-footer">
+    <small class="text-muted hidden-sm-down">Spaceで再生/停止</small>
+    <audio id="phrases-audio" [src]="soundUrl" controls></audio>
+  </section>
+</ng-template>
