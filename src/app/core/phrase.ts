@@ -1,7 +1,6 @@
 export class Phrase {
   id: number;
   number: number;
-  level: number;
   section: number;
   phraseJa: string;
   phraseEn: string;
