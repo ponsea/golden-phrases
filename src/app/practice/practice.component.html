@@ -1,3 +1,16 @@
-<p>
-  practice works!
-</p>
+<section class="container" *ngIf="phrases">
+  <article *ngIf="!isEnd" class="text-center">
+    <h1 class="h4 mt-3">テスト</h1>
+    <h2 class="h5">- セクション{{section}} -</h2>
+    <div>{{phraseIdx + 1}} / {{phrases.length}}</div>
+    <gp-question [phrase]="currentPhrase"
+                 (answered)="next($event)"></gp-question>
+  </article>
+  <article *ngIf="isEnd">
+    <gp-result [phrases]="phrases"
+               [scores]="scores"></gp-result>
+  </article>
+</section>
+
+<!-- only for development -->
+<button type="button" (click)="end()">END (only for development)</button>
