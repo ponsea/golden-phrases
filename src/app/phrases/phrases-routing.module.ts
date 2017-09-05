@@ -4,6 +4,7 @@ import { RouterModule, Routes }        from '@angular/router';
 import { PhrasesComponent } from './phrases.component';
 
 const phrasesRoutes: Routes = [
+  { path: 'phrases/:id', component: PhrasesComponent },
   { path: 'phrases', component: PhrasesComponent },
 ];
 
