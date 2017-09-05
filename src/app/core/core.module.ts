@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppInfoService } from './app-info.service';
 import { PhrasesService } from './phrases.service';
 import { PhraseConversionService } from './phrase-conversion.service';
+import { LevelsService } from './levels.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { PhraseConversionService } from './phrase-conversion.service';
   providers: [
     AppInfoService,
     PhrasesService,
-    PhraseConversionService
+    PhraseConversionService,
+    LevelsService
   ],
   exports: [
     NavbarComponent
