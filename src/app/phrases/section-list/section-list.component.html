@@ -1,7 +1,7 @@
-<ngb-accordion [closeOthers]="true">
-  <ngb-panel *ngFor="let i of sectionRange" [title]="'セクション' + i">
+<ngb-accordion [closeOthers]="true" [activeIds]="[currentSectionId]" (panelChange)="updateUrl($event)">
+  <ngb-panel *ngFor="let section of sections" [title]="'セクション' + section.id" [id]="section.id">
     <ng-template ngbPanelContent>
-      <gp-section [sectionId]="i"></gp-section>
+      <gp-section [sectionId]="section.id"></gp-section>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

@@ -1,9 +1,9 @@
 <article class="container">
   <h1 class="my-4">金のフレーズ</h1>
-  <ngb-tabset>
-    <ngb-tab *ngFor="let title of titles;let i=index" [title]="title">
+  <ngb-tabset *ngIf="levels" [activeId]="currentLevelId">
+    <ngb-tab *ngFor="let level of levels" [title]="level.title" [id]="level.id">
       <ng-template ngbTabContent>
-        <gp-section-list [level]="i+1"></gp-section-list>
+        <gp-section-list [sections]="level.sections"></gp-section-list>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
