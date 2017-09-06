@@ -1,8 +1,14 @@
-<div class="clearfix text-center">
-  <button type="button" class="btn btn-info float-left" (click)="prev()">前へ</button>
-  <button type="button" class="btn btn-info float-right" (click)="next()">次へ</button>
-  {{index + 1}} / {{phrases.length}}
+<div class="body">
+  <div class="clearfix text-center">
+    {{index + 1}} / {{phrases.length}}
+  </div>
+
+  <article *ngIf="currentPhrase">
+    <gp-phrase [phrase]="currentPhrase"></gp-phrase>
+  </article>
 </div>
-<article *ngIf="currentPhrase">
-  <gp-phrase [phrase]="currentPhrase"></gp-phrase>
-</article>
+<div class="row justify-content-center">
+  <button type="button" class="btn btn-info float-left mx-2" (click)="prev()">前へ</button>
+  <button type="button" class="btn btn-info float-right mx-2" (click)="next()">次へ</button>
+</div>
+<div class="text-center text-muted hidden-sm-down my-0">(←→キー)</div>
