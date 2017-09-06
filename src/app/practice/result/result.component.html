@@ -39,7 +39,7 @@
     <gp-phrases-viewer [phrases]="phrases" [(index)]="phraseIdx"></gp-phrases-viewer>
   </section>
   <section class="modal-footer">
-    <small class="text-muted hidden-sm-down">Spaceで再生/停止</small>
-    <audio id="phrases-audio" [src]="soundUrl" controls></audio>
+    <gp-section-sound [sectionId]="sectionId"></gp-section-sound>
   </section>
 </ng-template>
+

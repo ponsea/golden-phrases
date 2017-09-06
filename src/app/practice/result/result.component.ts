@@ -1,10 +1,8 @@
 import { Component,
          OnInit,
          Input,
-         HostListener,
          ViewChild,
-         TemplateRef,
-         Renderer2 } from '@angular/core';
+         TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PhraseConversionService } from '../../core/phrase-conversion.service';
@@ -21,13 +19,11 @@ export class ResultComponent implements OnInit {
   @Input() scores: [number, boolean][];
   sectionId: number;
   soundUrl: string;
-  isModalOpend = false;
   phraseIdx = 0;
 
   constructor(
     private pcs: PhraseConversionService,
-    private modalService: NgbModal,
-    private renderer: Renderer2
+    private modalService: NgbModal
   ) { }
 
   scoreAt(i: number): boolean { return this.scores[i][1]; }
@@ -51,22 +47,6 @@ export class ResultComponent implements OnInit {
 
   openModal(i: number) {
     this.phraseIdx = i;
-    this.isModalOpend = true;
-    this.modalService.open(this.phrasesModal)
-      .result.catch(() => this.isModalOpend = false );
-  }
-
-  toggleSound() {
-    if (this.isModalOpend == false) return;
-    let element = this.renderer.selectRootElement('#phrases-audio');
-    element.paused ? element.play() : element.pause();
-  }
-
-  @HostListener('document:keydown', ['$event'])
-  private toggleSoundOnKeySpace(event: KeyboardEvent): void {
-    const KEY_SPACE = 32;
-    if (event.keyCode == KEY_SPACE) {
-      this.toggleSound();
-    }
+    this.modalService.open(this.phrasesModal);
   }
 }
