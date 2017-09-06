@@ -26,6 +26,8 @@
         <li *ngFor="let exp of explanations" [innerHTML]="exp"></li>
       </ul>
     </dd>
-    <button type="button" (click)="next()" class="btn btn-success" myFocusOnInit>次の問題へ(Enter)</button>
+    <button type="button" (click)="next()" class="btn btn-success">
+      次の問題へ<span class="hidden-xs-down">(Enter)</span>
+    </button>
   </div>
 </dl>
