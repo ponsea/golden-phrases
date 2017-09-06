@@ -21,7 +21,8 @@
     </tr>
   </tbody>
 </table>
-<a class="btn btn-warning btn-block btn-lg" routerLink="/phrases">
+<a class="btn btn-warning btn-block btn-lg"
+   [routerLink]="['/phrases', { section_id: sectionId }]">
   終了する
 </a>
 
