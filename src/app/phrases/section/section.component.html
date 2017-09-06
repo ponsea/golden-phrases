@@ -1,7 +1,12 @@
 <section>
-  <gp-phrases-viewer [phrases]="phrases"></gp-phrases-viewer>
+  <gp-phrases-viewer [phrases]="phrases"
+     [index]="phraseIdx"
+     (indexChange)="updateUrl($event)">
+  </gp-phrases-viewer>
 </section>
 <hr>
 <section>
-  <button type="button" class="btn btn-primary btn-lg btn-block">テストする</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block">
+    テストする
+  </button>
 </section>
