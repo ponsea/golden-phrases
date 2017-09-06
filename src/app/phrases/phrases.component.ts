@@ -29,7 +29,7 @@ export class PhrasesComponent implements OnInit {
       });
     this.route.paramMap
       .subscribe(params => {
-        this.currentSectionId = +params.get('id');
+        this.currentSectionId = +params.get('section_id');
         this.setCurrentLevelId();
       });
   }

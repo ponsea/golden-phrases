@@ -22,12 +22,12 @@ export class SectionListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .subscribe(params => this.currentSectionId = +params.get("id"));
+      .subscribe(params => this.currentSectionId = +params.get("section_id"));
   }
 
   updateUrl(event: NgbPanelChangeEvent) {
     if (event.nextState === true) {
-      this.router.navigate(['/phrases', event.panelId], { replaceUrl: true });
+      this.router.navigate(['/phrases', { section_id: event.panelId }], { replaceUrl: true });
     }
   }
 }
