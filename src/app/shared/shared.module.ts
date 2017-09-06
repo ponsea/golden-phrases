@@ -6,6 +6,7 @@ import { RouterModule }             from '@angular/router';
 
 import { PhraseComponent } from './phrase/phrase.component';
 import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.component';
+import { SectionSoundComponent } from './section-sound/section-sound.component';
 
 @NgModule({
   imports: [
@@ -13,10 +14,11 @@ import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.componen
     FormsModule,
     NgbModule,
     RouterModule
-   ],
+  ],
   declarations: [
     PhraseComponent,
     PhrasesViewerComponent,
+    SectionSoundComponent,
   ],
   exports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.componen
     RouterModule,
     PhraseComponent,
     PhrasesViewerComponent,
+    SectionSoundComponent,
   ]
 })
 export class SharedModule { }
