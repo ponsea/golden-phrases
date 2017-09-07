@@ -43,7 +43,7 @@ export class PhraseConversionService {
   }
 
   convertToDash(phraseEn: string): string {
-    let result = phraseEn.replace(/([a-z-])\*([a-z-])*/i, '{$1-------$2}');
+    let result = phraseEn.replace(/([a-z-])\*([a-z-]*)/i, '{$1-------$2}');
     return this.drawUnderline(this.highlight(result));
   }
 }
