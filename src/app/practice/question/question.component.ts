@@ -49,7 +49,7 @@ export class QuestionComponent implements OnChanges {
 
     let candidates = this.getAnswerCandidates(this.phrase);
 
-    if (candidates.includes(answer.trim())) {
+    if (candidates.includes(answer.trim().toLowerCase())) {
       this.isCorrect = true;
       this.reply = "正解!";
     } else {
