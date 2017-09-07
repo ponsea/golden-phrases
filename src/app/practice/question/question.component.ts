@@ -60,7 +60,7 @@ export class QuestionComponent implements OnChanges {
   }
 
   next() {
-    this.answered.emit([this.phrase.number, this.isCorrect])
+    this.answered.emit([this.phrase.id, this.isCorrect])
   }
 
   private getAnswerCandidates({phraseEn, answer}: Phrase): string[] {

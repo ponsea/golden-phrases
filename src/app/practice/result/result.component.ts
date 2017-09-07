@@ -26,11 +26,14 @@ export class ResultComponent implements OnInit {
     private modalService: NgbModal
   ) { }
 
-  scoreAt(i: number): boolean { return this.scores[i][1]; }
+  get currentPhrase() { return this.phrases[this.phraseIdx]; }
+
+  scoreAt(id: number): boolean {
+    return this.scores.find(s => s[0] === id)[1];
+  }
 
   ngOnInit() {
     this.phrases.sort((a, b) => a.number - b.number);
-    this.scores.sort((a, b) => a[0] - b[0]);
     this.sectionId = this.phrases[0].sectionId;
     let num = ('0' + this.sectionId).slice(-2); // zero padding
     this.soundUrl = `assets/sounds/sections/section${num}.mp3`;
@@ -39,10 +42,6 @@ export class ResultComponent implements OnInit {
 
   convert(subject: string) {
     return this.pcs.convertBadge(subject);
-  }
-
-  range(to: number) {
-    return Array.from(Array(to), (v, k) => k);
   }
 
   openModal(i: number) {

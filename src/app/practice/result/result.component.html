@@ -12,11 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let i of range(phrases.length)" (click)="openModal(i)">
-      <td [class.incorrect]="!scoreAt(i)">{{phrases[i].answer}}</td>
-      <td class="hidden-xs-down" [innerHTML]="convert(phrases[i].meanings)"></td>
-      <td [class.text-primary]="scoreAt(i)" [class.text-danger]="!scoreAt(i)">
-        {{scoreAt(i) ? "○" : "✕"}}
+    <tr *ngFor="let phrase of phrases;let i=index" (click)="openModal(i)">
+      <td [class.incorrect]="!scoreAt(phrase.id)">{{phrase.answer}}</td>
+      <td class="hidden-xs-down" [innerHTML]="convert(phrase.meanings)"></td>
+      <td [class.text-primary]="scoreAt(phrase.id)"
+          [class.text-danger]="!scoreAt(phrase.id)">
+        {{scoreAt(phrase.id) ? "○" : "✕"}}
       </td>
     </tr>
   </tbody>
@@ -28,8 +29,8 @@
 
 <ng-template #phrasesModal let-dismiss="dismiss">
   <section class="modal-header">
-    <h4 class="modal-title" [class.text-primary]="scoreAt(phraseIdx)" [class.text-danger]="!scoreAt(phraseIdx)">
-      {{scoreAt(phraseIdx) ? "正解" : "不正解"}}
+    <h4 class="modal-title" [class.text-primary]="scoreAt(currentPhrase.id)" [class.text-danger]="!scoreAt(currentPhrase.id)">
+      {{scoreAt(currentPhrase.id) ? "正解" : "不正解"}}
     </h4>
     <button type="button" class="close" aria-label="Close" (click)="dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
