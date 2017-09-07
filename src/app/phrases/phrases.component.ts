@@ -26,7 +26,9 @@ export class PhrasesComponent implements OnInit {
       .subscribe(levels => {
         this.levels = levels;
         this.setCurrentLevelId();
-      });
+      },
+        err => alert(err.message)
+      );
     this.route.paramMap
       .subscribe(params => {
         this.currentSectionId = +params.get('section_id');
