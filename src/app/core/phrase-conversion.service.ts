@@ -25,12 +25,21 @@ export class PhraseConversionService {
   }
 
   convertBadge(subject: string): string {
-    return subject.replace(/\[([動名形副前接])\]/g,
-                           '<span class="badge badge-primary">$1</span>')
-                  .replace(/\[([類同反関例略])\]/g,
-                           '<span class="badge badge-warning">$1</span>')
-                  .replace(/\[(.)\]/g,
-                           '<span class="badge badge-default">$1</span>');
+    let icon = (type: string, icon: string) => {
+      return `<span class="badge badge-${type} p-1">
+                <i class="fa fa-${icon} fa-fw"></i>
+              </span>`
+    }
+
+    return subject
+      .replace(/\[([動名形副前接])\]/g,
+               '<span class="badge badge-primary">$1</span>')
+      .replace(/\[([類同反関例略])\]/g,
+               '<span class="badge badge-warning">$1</span>')
+      .replace(/\[#\]/g, icon('default', 'commenting'))
+      .replace(/\[@\]/g, icon('default', 'smile-o'))
+      .replace(/\[!\]/g, icon('danger', 'exclamation'))
+      .replace(/\[(.)\]/g, '<span class="badge badge-default">$1</span>');
   }
 
   splitByBadge(subject: string): string[] {
