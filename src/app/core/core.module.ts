@@ -8,6 +8,7 @@ import { AppInfoService } from './app-info.service';
 import { PhrasesService } from './phrases.service';
 import { PhraseConversionService } from './phrase-conversion.service';
 import { LevelsService } from './levels.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { LevelsService } from './levels.service';
     AppInfoService,
     PhrasesService,
     PhraseConversionService,
-    LevelsService
+    LevelsService,
+    AuthService,
   ],
   exports: [
     NavbarComponent
