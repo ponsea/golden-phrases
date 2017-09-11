@@ -11,6 +11,7 @@ import { LevelsService } from './levels.service';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { CoreRoutingModule } from './core-routing.module';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { CoreRoutingModule } from './core-routing.module';
     PhraseConversionService,
     LevelsService,
     AuthService,
+    AuthGuard,
   ],
   exports: [
     NavbarComponent
