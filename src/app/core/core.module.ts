@@ -9,15 +9,19 @@ import { PhrasesService } from './phrases.service';
 import { PhraseConversionService } from './phrase-conversion.service';
 import { LevelsService } from './levels.service';
 import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
+import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
   imports: [
     SharedModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    CoreRoutingModule
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   providers: [
     AppInfoService,
