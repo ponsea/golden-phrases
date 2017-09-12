@@ -71,6 +71,17 @@ export class AuthService {
       });
   }
 
+  registerAccount(email: string, name: string, password: string): Observable<User> {
+    let body = { email, name, password };
+    let url = this.appInfo.apiUrl + '/auth';
+    return this.http.post<{data: User}>(url, body, {observe: 'response'})
+      .do(response => {
+        this.updateAuthData(response.headers);
+        this.updateCurrentUser(response.body.data);
+      })
+      .map(response => response.body.data);
+  }
+
   private getAuthHeaders(): HttpHeaders {
       let authData = this.authData;
       return new HttpHeaders().set('access-token', authData.accessToken)
