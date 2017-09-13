@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthGuard } from './auth-guard.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AuthGuard } from './auth-guard.service';
   ],
   declarations: [
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   providers: [
     AppInfoService,

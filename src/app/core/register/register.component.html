@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <section class="col-md-4">
+    <h1 class="mt-4 text-center h3">新規登録</h1>
+
+    <form (ngSubmit)="onSubmit()" #form="ngForm" class="p-2" novalidate>
+      <div *ngIf="failureCount > 0" class="alert alert-danger" role="alert">
+        指定されたEmailアドレスは既に使用されています
+        <span *ngIf="failureCount > 1">({{failureCount}})</span>
+      </div>
+      <div class="form-group"
+           [class.has-danger]="ngEmail.invalid && ngEmail.touched">
+        <label for="email">Emailアドレス</label>
+        <input type="email"
+               class="form-control form-control-danger"
+               id="email" name="email"
+               [(ngModel)]="email" #ngEmail="ngModel"
+               required email>
+        <div class="form-control-feedback"
+             *ngIf="ngEmail.invalid && ngEmail.touched">
+          Emailアドレスを入力してください
+        </div>
+      </div>
+      <div class="form-group"
+           [class.has-danger]="ngName.invalid && ngName.touched">
+        <label for="name">お名前</label>
+        <input type="text"
+               class="form-control form-control-danger"
+               id="name" name="name"
+               [(ngModel)]="name" #ngName="ngModel"
+               required notblank>
+        <div class="form-control-feedback"
+             *ngIf="ngName.invalid && ngName.touched">
+          お名前を入力してください
+        </div>
+      </div>
+      <div class="form-group"
+           [class.has-danger]="ngPassword.invalid && ngPassword.touched">
+        <label for="password">パスワード</label>
+        <input type="password"
+               class="form-control form-control-danger"
+               id="password" name="password"
+               [(ngModel)]="password" #ngPassword="ngModel"
+               minlength="8" required notblank>
+        <small class="form-text text-muted">
+          8文字以上
+        </small>
+        <div class="form-control-feedback"
+             *ngIf="ngPassword.errors?.required && ngPassword.touched">
+          パスワードを入力してください
+        </div>
+        <div class="form-control-feedback"
+             *ngIf="ngPassword.errors?.minlength && ngPassword.touched">
+          パスワードは8文字以上必要です
+        </div>
+        <div class="form-control-feedback"
+             *ngIf="ngPassword.errors?.notblank && ngPassword.touched">
+          スペースのみのパスワードは不可です
+        </div>
+      </div>
+      <div class="form-group"
+           [class.has-danger]="!confirmationValid && ngPasswordC.dirty">
+        <label for="passwordConfirmation">パスワード (確認用)</label>
+        <input type="password"
+               class="form-control form-control-danger"
+               id="passwordConfirmation" name="passwordConfirmation"
+               [(ngModel)]="passwordConfirmation" #ngPasswordC="ngModel"
+               required>
+        <div class="form-control-feedback"
+             *ngIf="!confirmationValid && ngPasswordC.dirty">
+          相違があります
+        </div>
+      </div>
+      <button type="submit"
+              class="mt-4 btn btn-success btn-block"
+              [disabled]="form.invalid || !confirmationValid || submitDisabled">
+        新規登録
+      </button>
+    </form>
+  </section>
+</div>
