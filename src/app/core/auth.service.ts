@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { AppInfoService } from './app-info.service';
 import { AuthData } from './auth-data';
@@ -11,21 +13,45 @@ import { User } from './user';
 
 @Injectable()
 export class AuthService {
-  private _currentUser: User;
-  private _authData: AuthData;
+  private currentUserSubject = new BehaviorSubject<User>(null);
+  private authDataSubject = new BehaviorSubject<AuthData>(null);
 
   constructor(
     private http: HttpClient,
     private appInfo: AppInfoService) {
-    this._currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this._authData =  JSON.parse(localStorage.getItem('authData'));
+    this.currentUserSubject.next(JSON.parse(localStorage.getItem('currentUser')));
+    this.authDataSubject.next(JSON.parse(localStorage.getItem('authData')));
   }
 
-  get currentUser() { return this._currentUser; }
-  get authData() { return this._authData; }
+  get currentUserObservation(): Observable<User> {
+    return this.currentUserSubject;
+  }
+
+  get authDataObservation(): Observable<AuthData> {
+    return this.authDataSubject;
+  }
+
+  get userLoginedInObservation(): Observable<boolean> {
+    return this.authDataObservation
+      .map(authData => {
+        if (authData && Date.now() < authData.expiry * 1000)
+          return true;
+        return false;
+      })
+      .distinctUntilChanged();
+  }
+
+  get currentUser() {
+    return this.currentUserSubject.getValue();
+  }
+
+  get authData() {
+    return this.authDataSubject.getValue();
+  }
+
 
   get userLoginedIn(): boolean {
-    let authData = this.authData;
+    let authData = this.authDataSubject.getValue();
     if (authData && Date.now() < authData.expiry * 1000)
       return true;
     return false;
@@ -66,8 +92,8 @@ export class AuthService {
       .do(() => {
         localStorage.removeItem('authData');
         localStorage.removeItem('currentUser');
-        this._authData = null;
-        this._currentUser = null;
+        this.authDataSubject.next(null);
+        this.currentUserSubject.next(null);
       });
   }
 
@@ -97,11 +123,11 @@ export class AuthService {
       expiry: +headers.get('expiry')
     };
     localStorage.setItem('authData', JSON.stringify(authData));
-    this._authData = authData;
+    this.authDataSubject.next(authData);
   }
 
   private updateCurrentUser(user: User) {
     localStorage.setItem('currentUser', JSON.stringify(user));
-    this._currentUser = user;
+    this.currentUserSubject.next(user);
   }
 }
