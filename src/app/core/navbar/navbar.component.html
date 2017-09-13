@@ -15,6 +15,25 @@
             <a class="nav-link disabled">補助単語</a>
           </li>
         </ul>
+        <ng-container *ngIf="userLoginedIn">
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;
+              {{currentUser.name}} さん
+            </button>
+            <div class="dropdown-menu" aria-labelledby="userDropdown">
+              <button class="dropdown-item" (click)="logout()">ログアウト</button>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!userLoginedIn">
+          <a routerLink="/login" class="btn btn-outline-primary mx-1">
+            ログイン
+          </a>
+          <a routerLink="/register" class="btn btn-outline-success mx-1">
+            新規登録
+          </a>
+        </ng-container>
       </div>
     </nav>
   </div>
