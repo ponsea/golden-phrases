@@ -7,6 +7,7 @@ import { RouterModule }             from '@angular/router';
 import { PhraseComponent } from './phrase/phrase.component';
 import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.component';
 import { SectionSoundComponent } from './section-sound/section-sound.component';
+import { NotBlankValidatorDirective } from './not-blank.directive';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SectionSoundComponent } from './section-sound/section-sound.component';
     PhraseComponent,
     PhrasesViewerComponent,
     SectionSoundComponent,
+    NotBlankValidatorDirective,
   ],
   exports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { SectionSoundComponent } from './section-sound/section-sound.component';
     PhraseComponent,
     PhrasesViewerComponent,
     SectionSoundComponent,
+    NotBlankValidatorDirective,
   ]
 })
 export class SharedModule { }
