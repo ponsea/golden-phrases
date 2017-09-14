@@ -8,6 +8,7 @@ import { PhraseComponent } from './phrase/phrase.component';
 import { PhrasesViewerComponent } from './phrases-viewer/phrases-viewer.component';
 import { SectionSoundComponent } from './section-sound/section-sound.component';
 import { NotBlankValidatorDirective } from './not-blank.directive';
+import { MyAutoFocusDirective } from './my-auto-focus.directive';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { NotBlankValidatorDirective } from './not-blank.directive';
     PhrasesViewerComponent,
     SectionSoundComponent,
     NotBlankValidatorDirective,
+    MyAutoFocusDirective,
   ],
   exports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { NotBlankValidatorDirective } from './not-blank.directive';
     PhrasesViewerComponent,
     SectionSoundComponent,
     NotBlankValidatorDirective,
+    MyAutoFocusDirective,
   ]
 })
 export class SharedModule { }
