@@ -14,7 +14,7 @@
                class="form-control form-control-danger"
                id="email" name="email"
                [(ngModel)]="email" #ngEmail="ngModel"
-               required email>
+               required email myAutoFocus>
         <div class="form-control-feedback"
              *ngIf="ngEmail.invalid && ngEmail.touched">
           Emailアドレスを入力してください
