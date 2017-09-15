@@ -63,7 +63,6 @@ export class AuthService {
     let body = {email, password};
     return this.http.post<{data: User}>(url, body, {headers, observe: 'response'})
       .do(response => {
-        console.log(response);
         this.updateAuthData(response.headers);
         this.updateCurrentUser(response.body.data);
       })
@@ -109,10 +108,15 @@ export class AuthService {
   }
 
   getAuthHeaders(): HttpHeaders {
-      let authData = this.authData;
-      return new HttpHeaders().set('access-token', authData.accessToken)
-                              .set('client', authData.client)
-                              .set('uid', authData.uid);
+      return new HttpHeaders(this.getAuthHeadersObject());
+  }
+
+  getAuthHeadersObject() {
+    return {
+      'access-token': this.authData.accessToken,
+      'client': this.authData.client,
+      'uid': this.authData.uid,
+    }
   }
 
   updateAuthData(headers: HttpHeaders) {
