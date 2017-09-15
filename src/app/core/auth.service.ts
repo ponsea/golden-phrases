@@ -108,14 +108,14 @@ export class AuthService {
       .map(response => response.body.data);
   }
 
-  private getAuthHeaders(): HttpHeaders {
+  getAuthHeaders(): HttpHeaders {
       let authData = this.authData;
       return new HttpHeaders().set('access-token', authData.accessToken)
                               .set('client', authData.client)
                               .set('uid', authData.uid);
   }
 
-  private updateAuthData(headers: HttpHeaders) {
+  updateAuthData(headers: HttpHeaders) {
     let authData: AuthData = {
       accessToken: headers.get('access-token'),
       client: headers.get('client'),
