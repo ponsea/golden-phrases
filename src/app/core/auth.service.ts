@@ -6,6 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/catch';
 
 import { AppInfoService } from './app-info.service';
 import { AuthData } from './auth-data';
@@ -88,11 +89,12 @@ export class AuthService {
     let url = this.appInfo.apiUrl + '/auth/sign_out';
     let headers = this.getAuthHeaders();
     return this.http.delete(url, {headers})
-      .do(() => {
-        localStorage.removeItem('authData');
-        localStorage.removeItem('currentUser');
-        this.authDataSubject.next(null);
-        this.currentUserSubject.next(null);
+      .do(() => this.clearCredentials())
+      .catch(err => {
+        if (err.status === 404) {
+          this.clearCredentials();
+        }
+        return err;
       });
   }
 
@@ -133,5 +135,12 @@ export class AuthService {
   private updateCurrentUser(user: User) {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
+  }
+
+  private clearCredentials() {
+    localStorage.removeItem('authData');
+    localStorage.removeItem('currentUser');
+    this.authDataSubject.next(null);
+    this.currentUserSubject.next(null);
   }
 }
