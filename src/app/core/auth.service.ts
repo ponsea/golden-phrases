@@ -122,6 +122,8 @@ export class AuthService {
   }
 
   updateAuthData(headers: HttpHeaders) {
+    if (!headers.get('access-token')) return;
+
     let authData: AuthData = {
       accessToken: headers.get('access-token'),
       client: headers.get('client'),
