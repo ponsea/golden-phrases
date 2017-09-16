@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -13,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { AuthInterceptor } from './auth-interceptor.service';
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
     LevelsService,
     AuthService,
     AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, },
   ],
   exports: [
     NavbarComponent
