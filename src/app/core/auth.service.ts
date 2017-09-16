@@ -71,18 +71,18 @@ export class AuthService {
   }
 
   validateToken(): Observable<User> {
-    if (this.userLoginedIn) {
-      let url = this.appInfo.apiUrl + '/auth/validate_token';
-      let authData = this.authData;
-      let headers = this.getAuthHeaders();
-      return this.http.get<{data: User}>(url, {headers, observe: 'response'})
-        .do(response => {
-          this.updateAuthData(response.headers);
-          this.updateCurrentUser(response.body.data);
-        })
-        .map(response => response.body.data);
-    }
-    return Observable.throw("Don't have a valid token");
+    if (!this.userLoginedIn)
+      return Observable.throw("Don't have a valid token");
+
+    let url = this.appInfo.apiUrl + '/auth/validate_token';
+    let authData = this.authData;
+    let headers = this.getAuthHeaders();
+    return this.http.get<{data: User}>(url, {headers, observe: 'response'})
+      .do(response => {
+        this.updateAuthData(response.headers);
+        this.updateCurrentUser(response.body.data);
+      })
+      .map(response => response.body.data);
   }
 
   signOut() {
@@ -132,15 +132,16 @@ export class AuthService {
     this.authDataSubject.next(authData);
   }
 
-  private updateCurrentUser(user: User) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    this.currentUserSubject.next(user);
-  }
-
-  private clearCredentials() {
+  clearCredentials() {
     localStorage.removeItem('authData');
     localStorage.removeItem('currentUser');
     this.authDataSubject.next(null);
     this.currentUserSubject.next(null);
   }
+
+  private updateCurrentUser(user: User) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
+
 }
