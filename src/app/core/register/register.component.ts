@@ -15,7 +15,7 @@ export class RegisterComponent {
   passwordConfirmation: string;
   name: string;
   submitDisabled = false;
-  failureCount = 0;
+  errors: string[];
 
   constructor(
     private router: Router,
@@ -33,7 +33,7 @@ export class RegisterComponent {
           this.router.navigate(['/phrases']);
       }, err => {
         if (err.status === 422) {
-          ++this.failureCount;
+          this.errors = err.error.errors.full_messages;
         } else {
           alert('エラーが発生しました。しばらくの後、再度お試しください');
         }

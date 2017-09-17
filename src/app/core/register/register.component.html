@@ -3,9 +3,8 @@
     <h1 class="mt-4 text-center h3">新規登録</h1>
 
     <form (ngSubmit)="onSubmit()" #form="ngForm" class="p-2" novalidate>
-      <div *ngIf="failureCount > 0" class="alert alert-danger" role="alert">
-        指定されたEmailアドレスは既に使用されています
-        <span *ngIf="failureCount > 1">({{failureCount}})</span>
+      <div *ngIf="errors" class="alert alert-danger" role="alert">
+        <p *ngFor="let err of errors">{{err}}</p>
       </div>
       <div class="form-group"
            [class.has-danger]="ngEmail.invalid && ngEmail.touched">
@@ -27,7 +26,7 @@
                class="form-control form-control-danger"
                id="name" name="name"
                [(ngModel)]="name" #ngName="ngModel"
-               required notblank>
+               required maxlength="32" notblank>
         <div class="form-control-feedback"
              *ngIf="ngName.invalid && ngName.touched">
           お名前を入力してください
@@ -40,7 +39,7 @@
                class="form-control form-control-danger"
                id="password" name="password"
                [(ngModel)]="password" #ngPassword="ngModel"
-               minlength="8" required notblank>
+               minlength="8" maxlength="32" required notblank>
         <small class="form-text text-muted">
           8文字以上
         </small>
