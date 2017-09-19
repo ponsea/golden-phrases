@@ -20,14 +20,4 @@ export class PhrasesService {
     return this.httpClient.get<PhrasesResponse>(url, {params})
       .map((res) => res.data as Phrase[]);
   }
-
-  shuffle(phrases: Phrase[]): Phrase[] {
-    for(var i = phrases.length - 1; i > 0; i--){
-      var r = Math.floor(Math.random() * (i + 1));
-      var tmp = phrases[i];
-      phrases[i] = phrases[r];
-      phrases[r] = tmp;
-    }
-    return phrases;
-  }
 }

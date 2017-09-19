@@ -37,7 +37,7 @@ export class PracticeComponent implements OnInit {
         params => this.phrasesService.getSection(this.sectionId)
       )
       .subscribe(
-        phrases => this.phrases = this.phrasesService.shuffle(phrases),
+        phrases => this.phrases = this.shuffle(phrases),
         error => alert(error.message)
       );
   }
@@ -62,5 +62,13 @@ export class PracticeComponent implements OnInit {
     this.scores = scores;
     this.phraseIdx = this.phrases.length - 1
     this.next([this.phrases[this.phrases.length - 1].number, Math.random() > 0.5]);
+  }
+
+  private shuffle(phrases: Phrase[]): Phrase[] {
+    for(let i = phrases.length - 1; i > 0; i--){
+      let r = Math.floor(Math.random() * (i + 1));
+      [phrases[i], phrases[r]] = [phrases[r], phrases[i]];
+    }
+    return phrases;
   }
 }
