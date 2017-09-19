@@ -1,0 +1,37 @@
+<div *ngIf="scores && scores.length > 0">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th class="text-center date">日時</th>
+        <th class="text-center">正答率</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let score of dispScores;let isFirst=first">
+        <td>{{score.createdAt | date: 'yyyy/MM/dd HH:mm'}}</td>
+        <td class="pt-2">
+          <ngb-progressbar showValue="true"
+                           [type]="chooseType(score)"
+                           [striped]="isFirst"
+                           [animated]="isFirst"
+                           [value]="score.correctCount"
+                           [max]="score.allCount">
+          </ngb-progressbar>
+        </td>
+      </tr>
+      <tr *ngIf="scores.length > NUM_OF_DISP && !isOpened">
+        <td colspan="2" class="text-center text-muted">
+          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-secondary btn-sm btn-block"
+          *ngIf="scores.length > NUM_OF_DISP"
+          (click)="isOpened = !isOpened">
+    {{isOpened ? 'たたむ' : '全て表示する'}}
+  </button>
+</div>
+<div *ngIf="scores && scores.length <= 0">
+  <p class="text-center text-muted">スコアはありません</p>
+</div>
