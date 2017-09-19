@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { ScoreService } from './score.service';
 import { AuthInterceptor } from './auth-interceptor.service';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AuthInterceptor } from './auth-interceptor.service';
     LevelsService,
     AuthService,
     AuthGuard,
+    ScoreService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, },
   ],
   exports: [
