@@ -8,21 +8,11 @@ import { Phrase, PhrasesResponse } from './phrase';
 
 @Injectable()
 export class PhrasesService {
-  private sectionRanges = [
-    [1, 2, 3, 4, 5, 6, 7, 8],
-    [9, 10, 11, 12, 13, 14],
-    [15, 16, 17, 18],
-    [19, 20]
-  ];
 
   constructor(
     private appInfo: AppInfoService,
     private httpClient: HttpClient
   ) { }
-
-  getSectionRange(level: number): number[] {
-    return this.sectionRanges[level - 1];
-  }
 
   getSection(sectionId: number): Observable<Phrase[]> {
     let url = this.appInfo.apiUrl + "/phrases";
