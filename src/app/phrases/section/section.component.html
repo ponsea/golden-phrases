@@ -1,4 +1,24 @@
 <section>
+  <h2 class="h4">スコア</h2>
+  <gp-scores *ngIf="authService.userLoginedInObservation | async"
+              [sectionId]="sectionId">
+  </gp-scores>
+  <p *ngIf="!(authService.userLoginedInObservation | async)"
+     class="text-center text-muted">
+    アカウントの
+    <button class="btn btn-outline-success btn-sm" (click)="goToRegister()">
+      新規登録
+    </button>
+    または
+    <button class="btn btn-outline-primary btn-sm" (click)="goToLogin()">
+      ログイン
+    </button>
+    をしていただくことで、各テストのスコアを閲覧できるようになります
+  </p>
+</section>
+<hr>
+<section>
+  <h2 class="h4">フレーズ</h2>
   <gp-phrases-viewer [phrases]="phrases"
      [index]="phraseIdx"
      (indexChange)="updateUrl($event)">

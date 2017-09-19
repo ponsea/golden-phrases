@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Phrase } from '../../core/phrase';
 import { PhrasesService } from '../../core/phrases.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'gp-section',
@@ -17,7 +18,8 @@ export class SectionComponent implements OnInit {
   constructor(
     private phrasesService: PhrasesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -35,5 +37,14 @@ export class SectionComponent implements OnInit {
   updateUrl(i: number) {
     let params = { section_id: this.sectionId, index: i + 1 };
     this.router.navigate(['/phrases', params], { replaceUrl: true });
+  }
+
+  goToLogin() {
+    let params = { from: this.router.url };
+    this.router.navigate(['/login', params]);
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }
