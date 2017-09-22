@@ -1,0 +1,10 @@
+@import '../../../assets/styles/import';
+
+:host::ng-deep {
+  .card-header a {
+    text-decoration: none;
+  }
+  .score-heading .progress {
+    border: solid 1px $red;
+  }
+}

@@ -1,5 +1,21 @@
 <ngb-accordion [closeOthers]="true" [activeIds]="[currentSectionId]" (panelChange)="updateUrl($event)">
-  <ngb-panel *ngFor="let section of sections" [title]="'セクション' + section.id" [id]="section.id">
+  <ngb-panel *ngFor="let section of sections" [id]="section.id">
+    <ng-template ngbPanelTitle>
+      <div class="row section-title">
+        <div class="col-6">
+          セクション{{section.id}}
+        </div>
+        <div class="pt-1 col-6 col-sm-3 offset-sm-3"
+             *ngIf="(userLoginedIn | async) && getScoreHeading(section.id)">
+          <ngb-progressbar showValue="true"
+                           type="danger"
+                           [value]="getScoreHeading(section.id).correctCount"
+                           [max]="getScoreHeading(section.id).allCount"
+                           class="score-heading">
+          </ngb-progressbar>
+        </div>
+      </div>
+    </ng-template>
     <ng-template ngbPanelContent>
       <gp-section [sectionId]="section.id"></gp-section>
     </ng-template>
