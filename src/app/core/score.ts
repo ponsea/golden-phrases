@@ -11,3 +11,9 @@ export class ScoreDetail {
   phraseId: number;
   correct: boolean;
 }
+
+export class ScoreHeading {
+  sectionId: number;
+  correctCount: number;
+  allCount: number;
+}
