@@ -50,4 +50,11 @@ export class ScoreService {
     return this.http.get<{data: Score}>(url, {params, withCredentials: true})
       .map(res => res && res.data);
   }
+
+  postScore(sectionId: number, details: [number, boolean][]): Observable<Score> {
+    let url = this.appInfo.apiUrl + '/scores';
+    let body = {sectionId, details};
+    return this.http.post<{data: Score}>(url, body, {withCredentials: true})
+      .map(res => res.data);
+  }
 }
