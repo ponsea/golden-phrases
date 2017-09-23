@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthGuard } from './auth-guard.service';
+import { UnauthGuard } from './unauth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { ScoreService } from './score.service';
 import { AuthInterceptor } from './auth-interceptor.service';
@@ -36,6 +37,7 @@ import { AuthInterceptor } from './auth-interceptor.service';
     LevelsService,
     AuthService,
     AuthGuard,
+    UnauthGuard,
     ScoreService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, },
   ],

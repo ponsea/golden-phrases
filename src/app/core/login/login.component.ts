@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.authService.userLoginedIn) { // already signined
-      this.router.navigate(['/phrases']);
-    }
     this.route.paramMap.subscribe(params => this.fromUrl = params.get('from'));
   }
 
