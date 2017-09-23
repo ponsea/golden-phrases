@@ -1,6 +1,18 @@
 <div class="text-center">
   <h1 class="h4 mt-3">テスト結果</h1>
   <h2 class="h5 mb-3">- セクション{{sectionId}} -</h2>
+  <div *ngIf="!isSaved && !isFailed" class="text-info">
+    <i class="fa fa-spinner fa-pulse fa-fw"></i>スコアを保存中...
+  </div>
+  <div *ngIf="isSaved" class="text-info">
+    スコアの保存が完了しました。
+  </div>
+  <div *ngIf="isFailed" class="alert alert-danger">
+    スコアの保存に失敗しました。
+    <button type="button" class="btn btn-outline-danger" (click)="saveScore()">
+      もう一度試す
+    </button>
+  </div>
 </div>
 <button type="button" class="mb-3 btn btn-outline-primary" (click)="openModal(0)">フレーズ詳細</button>
 <table class="table table-bordered">

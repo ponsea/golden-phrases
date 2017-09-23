@@ -56,9 +56,8 @@ export class PracticeComponent implements OnInit {
   // only for development
   end() {
     let scores: [number, boolean][] = [];
-    this.phrases.forEach(p => {
-      scores.push([p.number, Math.random() > 0.5])
-    });
+    for (let i = 0; i < this.phrases.length - 1; i++)
+      scores.push([this.phrases[i].id, Math.random() > 0.5]);
     this.scores = scores;
     this.phraseIdx = this.phrases.length - 1
     this.next([this.phrases[this.phrases.length - 1].number, Math.random() > 0.5]);

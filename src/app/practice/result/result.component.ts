@@ -6,6 +6,7 @@ import { Component,
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PhraseConversionService } from '../../core/phrase-conversion.service';
+import { ScoreService } from '../../core/score.service';
 import { Phrase } from '../../core/phrase';
 
 @Component({
@@ -20,10 +21,13 @@ export class ResultComponent implements OnInit {
   sectionId: number;
   soundUrl: string;
   phraseIdx = 0;
+  isFailed = false;
+  isSaved = false;
 
   constructor(
     private pcs: PhraseConversionService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private scoreService: ScoreService
   ) { }
 
   get currentPhrase() { return this.phrases[this.phraseIdx]; }
@@ -37,7 +41,7 @@ export class ResultComponent implements OnInit {
     this.sectionId = this.phrases[0].sectionId;
     let num = ('0' + this.sectionId).slice(-2); // zero padding
     this.soundUrl = `assets/sounds/sections/section${num}.mp3`;
-    // TODO: saving scores
+    this.saveScore();
   }
 
   convert(subject: string) {
@@ -47,5 +51,15 @@ export class ResultComponent implements OnInit {
   openModal(i: number) {
     this.phraseIdx = i;
     this.modalService.open(this.phrasesModal);
+  }
+
+  saveScore() {
+    if (this.isSaved) return;
+    this.isFailed = false;
+    this.scoreService.postScore(this.sectionId, this.scores)
+      .subscribe(
+        res => this.isSaved = true,
+        err => this.isFailed = true
+      );
   }
 }
