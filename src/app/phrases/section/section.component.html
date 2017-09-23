@@ -1,9 +1,9 @@
 <section>
   <h2 class="h4">スコア</h2>
-  <gp-scores *ngIf="authService.userLoginedInObservation | async"
+  <gp-scores *ngIf="userLoginedIn | async"
               [sectionId]="sectionId">
   </gp-scores>
-  <p *ngIf="!(authService.userLoginedInObservation | async)"
+  <p *ngIf="!(userLoginedIn | async)"
      class="text-center text-muted">
     アカウントの
     <button class="btn btn-outline-success btn-sm" (click)="goToRegister()">
@@ -18,6 +18,12 @@
 </section>
 <hr>
 <section>
+  <div class="float-right h5" *ngIf="(userLoginedIn | async)">
+    <span class="badge badge-danger" *ngIf="wasIncorrect">
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+      前回間違えたフレーズ
+    </span>
+  </div>
   <h2 class="h4">フレーズ</h2>
   <gp-phrases-viewer [phrases]="phrases"
      [index]="phraseIdx"
