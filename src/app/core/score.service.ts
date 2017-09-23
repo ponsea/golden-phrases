@@ -42,4 +42,12 @@ export class ScoreService {
         return scores as Score[];
       });
   }
+
+  getRecentScore(sectionId: number): Observable<Score> {
+    let url = this.appInfo.apiUrl + '/scores';
+    let params = new HttpParams().set('section_id', sectionId.toString())
+                                 .set('recent', 'true');
+    return this.http.get<{data: Score}>(url, {params, withCredentials: true})
+      .map(res => res && res.data);
+  }
 }
