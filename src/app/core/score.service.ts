@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { AppInfoService } from './app-info.service';
+import { AuthService } from './auth.service';
 import { Score, ScoreHeading } from './score';
 
 @Injectable()
@@ -14,8 +15,11 @@ export class ScoreService {
 
   constructor(
     private http: HttpClient,
-    private appInfo: AppInfoService
-  ) { }
+    private appInfo: AppInfoService,
+    private authService: AuthService) {
+    authService.currentUserObservation
+      .subscribe(() => this.scoreHeadings.next(null));
+  }
 
   getScoreHeadings(): Observable<ScoreHeading[]> {
     if (this.scoreHeadings.getValue()) return this.scoreHeadings;
