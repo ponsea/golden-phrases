@@ -19,7 +19,6 @@ export class ResultComponent implements OnInit {
   @Input() phrases: Phrase[];
   @Input() scores: [number, boolean][];
   sectionId: number;
-  soundUrl: string;
   phraseIdx = 0;
   isFailed = false;
   isSaved = false;
@@ -39,8 +38,6 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     this.phrases.sort((a, b) => a.number - b.number);
     this.sectionId = this.phrases[0].sectionId;
-    let num = ('0' + this.sectionId).slice(-2); // zero padding
-    this.soundUrl = `assets/sounds/sections/section${num}.mp3`;
     this.saveScore();
   }
 
