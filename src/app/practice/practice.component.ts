@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 
+import { AuthService } from '../core/auth.service';
 import { PhrasesService } from '../core/phrases.service';
 import { Phrase } from '../core/phrase';
 
@@ -12,7 +14,7 @@ import { Phrase } from '../core/phrase';
   templateUrl: './practice.component.html',
   styleUrls: ['./practice.component.scss']
 })
-export class PracticeComponent implements OnInit {
+export class PracticeComponent implements OnInit, OnDestroy {
   sectionId: number;
   phrases: Phrase[];
   scores: [number, boolean][];
@@ -22,9 +24,11 @@ export class PracticeComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private phrasesService: PhrasesService
+    private phrasesService: PhrasesService,
+    private authService: AuthService
   ) { }
 
+  private loginedInSub: Subscription;
   ngOnInit() {
     this.route.paramMap
       .do((params) => {
@@ -40,7 +44,17 @@ export class PracticeComponent implements OnInit {
         phrases => this.phrases = this.shuffle(phrases),
         error => alert(error.message)
       );
+
+    // navigate to the home if a user logout
+    this.loginedInSub = this.authService.userLoginedInObservation
+      .subscribe(logined => logined || this.router.navigate(['/']));
   }
+
+  ngOnDestroy() {
+    this.loginedInSub.unsubscribe();
+  }
+
+
 
   get currentPhrase() { return this.phrases[this.phraseIdx]; }
 
