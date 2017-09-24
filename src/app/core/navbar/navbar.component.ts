@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AppInfoService } from '../app-info.service';
 import { AuthService } from '../auth.service';
@@ -9,7 +10,7 @@ import { User } from '../user';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   title: string;
   userLoginedIn: boolean;
   currentUser: User;
@@ -19,12 +20,19 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService
   ) { }
 
+  private authSub: Subscription;
+  private loginedInSub: Subscription;
   ngOnInit() {
     this.title = this.appInfo.title;
-    this.authService.userLoginedInObservation
+    this.authSub = this.authService.userLoginedInObservation
       .subscribe(loginedIn => this.userLoginedIn = loginedIn);
-    this.authService.currentUserObservation
+    this.loginedInSub = this.authService.currentUserObservation
       .subscribe(user => this.currentUser = user);
+  }
+
+  ngOnDestroy() {
+    this.authSub.unsubscribe();
+    this.loginedInSub.unsubscribe();
   }
 
   logout() {
