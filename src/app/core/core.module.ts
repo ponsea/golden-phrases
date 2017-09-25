@@ -10,11 +10,8 @@ import { PhrasesService } from './phrases.service';
 import { PhraseConversionService } from './phrase-conversion.service';
 import { LevelsService } from './levels.service';
 import { AuthService } from './auth.service';
-import { LoginComponent } from './login/login.component';
-import { CoreRoutingModule } from './core-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { UnauthGuard } from './unauth-guard.service';
-import { RegisterComponent } from './register/register.component';
 import { ScoreService } from './score.service';
 import { AuthInterceptor } from './auth-interceptor.service';
 
@@ -23,12 +20,9 @@ import { AuthInterceptor } from './auth-interceptor.service';
     SharedModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    CoreRoutingModule
   ],
   declarations: [
     NavbarComponent,
-    LoginComponent,
-    RegisterComponent
   ],
   providers: [
     AppInfoService,

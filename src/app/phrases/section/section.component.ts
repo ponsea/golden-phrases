@@ -61,10 +61,10 @@ export class SectionComponent implements OnInit {
 
   goToLogin() {
     let params = { from: this.router.url };
-    this.router.navigate(['/login', params]);
+    this.router.navigate(['/users/login', params]);
   }
 
   goToRegister() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/users/register']);
   }
 }

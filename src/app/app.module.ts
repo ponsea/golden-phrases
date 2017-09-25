@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { UsersModule } from './users/users.module';
 import { PhrasesModule } from './phrases/phrases.module';
 import { PracticeModule } from './practice/practice.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CoreModule,
     SharedModule,
+    UsersModule,
     PhrasesModule,
     PracticeModule,
     AppRoutingModule
