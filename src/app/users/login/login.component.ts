@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   submitDisabled = false;
-  failureCount = 0;
+  errors: string[];
 
   constructor(
     private router: Router,
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         }
       }, err => {
         if (err.status === 401) {
-          ++this.failureCount;
+          this.errors = err.error.errors;
         } else {
           alert('エラーが発生しました。しばらくの後、再度お試しください');
         }
