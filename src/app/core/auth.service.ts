@@ -75,7 +75,6 @@ export class AuthService {
       return Observable.throw("Don't have a valid token");
 
     let url = this.appInfo.apiUrl + '/auth/validate_token';
-    let authData = this.authData;
     let headers = this.getAuthHeaders();
     return this.http.get<{data: User}>(url, {headers, observe: 'response'})
       .do(response => {
@@ -98,8 +97,13 @@ export class AuthService {
       });
   }
 
-  registerAccount(email: string, name: string, password: string): Observable<User> {
-    let body = { email, name, password };
+  registerAccount(email: string, name: string, password: string, confirmUrl: string): Observable<User> {
+    let body = {
+      email,
+      name,
+      password,
+      confirm_success_url: confirmUrl
+    };
     let url = this.appInfo.apiUrl + '/auth';
     return this.http.post<{data: User}>(url, body, {observe: 'response'})
       .do(response => {
