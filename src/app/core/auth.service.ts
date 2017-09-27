@@ -125,15 +125,19 @@ export class AuthService {
     }
   }
 
-  updateAuthData(headers: HttpHeaders) {
-    if (!headers.get('access-token')) return;
-
-    let authData: AuthData = {
-      accessToken: headers.get('access-token'),
-      client: headers.get('client'),
-      uid: headers.get('uid'),
-      expiry: +headers.get('expiry')
-    };
+  updateAuthData(patchData: HttpHeaders | AuthData) {
+    let authData: AuthData;
+    if (patchData instanceof AuthData) {
+      authData = patchData;
+    } else {
+      if (!patchData.get('access-token')) return;
+      authData = {
+        accessToken: patchData.get('access-token'),
+        client: patchData.get('client'),
+        uid: patchData.get('uid'),
+        expiry: +patchData.get('expiry')
+      };
+    }
     localStorage.setItem('authData', JSON.stringify(authData));
     this.authDataSubject.next(authData);
   }
