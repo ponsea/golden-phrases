@@ -16,9 +16,12 @@
          #ansInput (keyup.enter)="onAnswer(ansInput.value)"
          [disabled]="isAnswered">
   <div *ngIf="isAnswered">
-    <div [class.text-primary]="isCorrect"
-         [class.text-danger]="!isCorrect">
-      {{reply}}
+    <div *ngIf="isCorrect" class="mt-2 h5">
+      <span class="badge badge-primary">正解！</span>
+    </div>
+    <div *ngIf="!isCorrect" class="mt-2 h5">
+      <span class="badge badge-danger">不正解</span>
+      <b class="text-danger">&nbsp;{{phrase.answer}}</b>
     </div>
     <dt class="text-info">&lt;説明&gt;</dt>
     <dd>

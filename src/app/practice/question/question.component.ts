@@ -26,7 +26,6 @@ export class QuestionComponent implements OnChanges {
   meanings: string[];
   explanations: string[];
   answer: string;
-  reply: string;
   isCorrect: boolean;
 
   constructor(private pcs: PhraseConversionService) { }
@@ -51,10 +50,8 @@ export class QuestionComponent implements OnChanges {
 
     if (candidates.includes(answer.trim().toLowerCase())) {
       this.isCorrect = true;
-      this.reply = "正解!";
     } else {
       this.isCorrect = false;
-      this.reply = `不正解: ${this.phrase.answer}`;
     }
     setTimeout(() => this.isAnswered = true, 0);
   }
