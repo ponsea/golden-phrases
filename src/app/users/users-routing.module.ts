@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterConfirmComponent } from './register-confirm/register-confirm.component';
 import { UnauthGuard } from '../core/unauth-guard.service';
 
 const usersRoutes: Routes = [
@@ -15,6 +16,9 @@ const usersRoutes: Routes = [
         path: 'login',
         component: LoginComponent,
         canActivate: [UnauthGuard]
+      }, {
+        path: 'register/confirm',
+        component: RegisterConfirmComponent
       }, {
         path: 'register',
         component: RegisterComponent,

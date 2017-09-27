@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../core/auth.service';
 
@@ -10,16 +10,18 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  @ViewChild('modal') modal: TemplateRef<any>;
   email: string;
   password: string;
   passwordConfirmation: string;
   name: string;
   submitDisabled = false;
   errors: string[];
+  isWaiting = false;
 
   constructor(
-    private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal,
   ) { }
 
   get confirmationValid() {
@@ -28,9 +30,12 @@ export class RegisterComponent {
 
   onSubmit() {
     this.submitDisabled = true;
-    this.authService.registerAccount(this.email, this.name, this.password)
+    this.isWaiting = true;
+    let confirmUrl = location.origin + location.pathname + '/confirm';
+    this.authService.registerAccount(this.email, this.name, this.password, confirmUrl)
       .subscribe(() => {
-          this.router.navigate(['/phrases']);
+        this.modalService.open(this.modal);
+        this.isWaiting = false;
       }, err => {
         if (err.status === 422) {
           this.errors = err.error.errors.full_messages;
@@ -38,6 +43,7 @@ export class RegisterComponent {
           alert('エラーが発生しました。しばらくの後、再度お試しください');
         }
         this.submitDisabled = false;
+        this.isWaiting = false;
       });
   }
 }

@@ -1,0 +1,10 @@
+<section class="container text-center">
+  <div *ngIf="isConfirmed">
+    <h1 class="my-4">ようこそ、{{newUser.name}}さん。</h1>
+    <p>アカウントの有効化が完了しました。</p>
+    <a class="btn btn-outline-success" routerLink="/">トップページへ</a>
+  </div>
+  <div *ngIf="!isConfirmed" class="m-4">
+    <i class="fa fa-spinner fa-pulse fa-fw"></i>少々お待ちください...
+  </div>
+</section>
