@@ -1,10 +1,15 @@
-<section class="container" *ngIf="phrases">
+<section class="container">
   <article *ngIf="!isEnd" class="text-center">
     <h1 class="h4 mt-3">テスト</h1>
     <h2 class="h5">- セクション{{sectionId}} -</h2>
-    <div>{{phraseIdx + 1}} / {{phrases.length}}</div>
-    <gp-question [phrase]="currentPhrase"
-                 (answered)="next($event)"></gp-question>
+    <ng-container *ngIf="phrases">
+      <div>{{phraseIdx + 1}} / {{phrases.length}}</div>
+      <gp-question [phrase]="currentPhrase"
+                  (answered)="next($event)"></gp-question>
+    </ng-container>
+    <div *ngIf="!phrases" class="text-center my-5">
+      <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
   </article>
   <article *ngIf="isEnd">
     <gp-result [phrases]="phrases"
