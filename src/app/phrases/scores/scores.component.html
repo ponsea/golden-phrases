@@ -35,3 +35,6 @@
 <div *ngIf="scores && scores.length <= 0">
   <p class="text-center text-muted">スコアはありません</p>
 </div>
+<div *ngIf="!scores" class="text-center">
+  <i class="fa fa-spinner fa-pulse fa-fw"></i>
+</div>
