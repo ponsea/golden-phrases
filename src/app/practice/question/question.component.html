@@ -25,8 +25,11 @@
     </div>
     <dt class="text-info">&lt;説明&gt;</dt>
     <dd>
-      <ul class="list-unstyled">
-        <li *ngFor="let exp of explanations" [innerHTML]="exp"></li>
+      <ul class="list-unstyled explanation-list">
+        <li *ngFor="let exp of explanations"
+            class="explanation-item"
+            [innerHTML]="exp">
+        </li>
       </ul>
     </dd>
     <button type="button" (click)="next()" class="btn btn-success">

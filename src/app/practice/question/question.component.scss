@@ -1,0 +1,17 @@
+@import '../../../assets/styles/import';
+
+.explanation-list {
+  display: inline-block;
+  max-width: 30em;
+  margin: 0 auto;
+  text-align: left;
+}
+.explanation-item {
+  padding-left: 2em;
+}
+:host .explanation-item::ng-deep {
+  .badge:first-child {
+    margin-left: -2.3em;
+  }
+}
+
