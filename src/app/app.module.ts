@@ -9,6 +9,7 @@ import { PracticeModule } from './practice/practice.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
   ],
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
