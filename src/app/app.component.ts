@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 import { AuthService } from './core/auth.service';
+import { AppInfoService } from './core/app-info.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +11,14 @@ import { AuthService } from './core/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private title: Title,
+    private appInfo: AppInfoService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle(this.appInfo.title);
     this.initializeToken();
   }
 
