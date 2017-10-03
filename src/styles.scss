@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
                Meiryo, メイリオ, Osaka, 'MS PGothic',

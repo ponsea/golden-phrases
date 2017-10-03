@@ -6,4 +6,5 @@ export class AppInfoService {
   readonly apiBase = "http://localhost:3000";  // will change
   readonly apiPath = "/v1"
   readonly apiUrl = this.apiBase + this.apiPath;
+  readonly author = "ponsea.com";
 }
