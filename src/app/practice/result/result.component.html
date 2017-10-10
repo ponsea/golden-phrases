@@ -2,6 +2,9 @@
   <h1 class="h4 mt-3 mb-3">テスト結果
     <small class="text-muted">- セクション{{sectionId}}</small>
   </h1>
+  <p class="h5 mb-3">
+    正答率 {{rate}}％
+  </p>
   <div *ngIf="!isSaved && !isFailed" class="text-info">
     <i class="fa fa-spinner fa-pulse fa-fw"></i>スコアを保存中...
   </div>

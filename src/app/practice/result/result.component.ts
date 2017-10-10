@@ -31,6 +31,11 @@ export class ResultComponent implements OnInit {
 
   get currentPhrase() { return this.phrases[this.phraseIdx]; }
 
+  get rate() {
+    let correctCount = this.scores.filter(v => v[1]).length;
+    return correctCount / this.scores.length * 100;
+  }
+
   scoreAt(id: number): boolean {
     return this.scores.find(s => s[0] === id)[1];
   }
