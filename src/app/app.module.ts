@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found.component';
+import { DescriptionComponent } from './description/description.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { NotFoundComponent } from './not-found.component';
   declarations: [
     AppComponent,
     NotFoundComponent,
+    DescriptionComponent,
   ],
   providers: [
     Title
