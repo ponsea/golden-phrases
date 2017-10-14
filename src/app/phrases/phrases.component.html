@@ -1,5 +1,8 @@
 <article class="container">
-  <h1 class="my-4">金のフレーズ</h1>
+  <h1 class="mt-4 mb-2">金のフレーズ</h1>
+  <p class="text-muted">当アプリケーションで掲載されている全フレーズは、TEX加藤氏著作「TOEIC&reg; L&amp;R TEST 出る単特急 金のフレーズ」の内容を引用させていただいています。
+    <a routerLink="/description">詳細を見る</a>
+  </p>
   <ngb-tabset *ngIf="levels" [activeId]="currentLevelId">
     <ngb-tab *ngFor="let level of levels" [title]="level.title" [id]="level.id">
       <ng-template ngbTabContent>
