@@ -35,9 +35,9 @@ export class PhraseConversionService {
       .replace(/\[([動名形副前接])\]/g,
                '<span class="badge badge-primary">$1</span>')
       .replace(/\[([類同反関例略])\]/g,
-               '<span class="badge badge-warning">$1</span>')
-      .replace(/\[#\]/g, icon('default', 'commenting'))
-      .replace(/\[@\]/g, icon('default', 'smile-o'))
+               '<span class="badge badge-default">$1</span>')
+      .replace(/\[#\]/g, icon('success', 'commenting'))
+      .replace(/\[@\]/g, icon('success', 'smile-o'))
       .replace(/\[!\]/g, icon('danger', 'exclamation'))
       .replace(/\[(.)\]/g, '<span class="badge badge-default">$1</span>');
   }
