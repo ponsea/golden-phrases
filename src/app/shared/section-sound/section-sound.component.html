@@ -1,2 +1,5 @@
 <small class="text-muted hidden-sm-down">Spaceで再生/停止</small>
 <audio #audio [src]="soundUrl" controls></audio>
+<small class="text-muted">
+  <label><input type="checkbox" [(ngModel)]="enOnly">英語のみ</label>
+</small>
